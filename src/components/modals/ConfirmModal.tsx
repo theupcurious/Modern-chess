@@ -22,7 +22,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
     <Modal isOpen={true}>
       <div className="p-6 text-center">
         <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-slate-400 mb-6">{message}</p>
+        <p className="text-zinc-400 mb-6">{message}</p>
         <div className="space-y-3">
           <button
             onClick={onConfirm}
@@ -32,7 +32,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
           </button>
           <button
             onClick={onCancel}
-            className="w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-xl font-semibold text-slate-200 transition-colors"
+            className="w-full py-3 px-4 bg-zinc-700 hover:bg-zinc-600 rounded-xl font-semibold text-zinc-200 transition-colors"
           >
             {cancelLabel}
           </button>

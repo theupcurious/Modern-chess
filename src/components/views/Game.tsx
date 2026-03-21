@@ -472,6 +472,7 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
     const isMoveOption = possibleMoves.find((m) => m.to === squareName);
     const isCheck = checkSquare === squareName;
     const isCapture = isMoveOption && piece;
+    const isDark = (actualR + actualC) % 2 !== 0;
 
     return (
       <div
@@ -481,14 +482,14 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
       >
         {actualC === (isFlipped ? 7 : 0) && (
           <span
-            className={`absolute top-0.5 left-0.5 text-[0.6rem] font-bold ${getBoardSquareColor(actualR, actualC).includes('light') ? 'text-board-dark' : 'text-board-light'}`}
+            className={`absolute top-0.5 left-1 text-[0.65rem] font-bold leading-none ${isDark ? 'text-board-light/70' : 'text-board-dark/70'}`}
           >
             {8 - actualR}
           </span>
         )}
         {actualR === (isFlipped ? 0 : 7) && (
           <span
-            className={`absolute bottom-0.5 right-1 text-[0.6rem] font-bold ${getBoardSquareColor(actualR, actualC).includes('light') ? 'text-board-dark' : 'text-board-light'}`}
+            className={`absolute bottom-0.5 right-1 text-[0.65rem] font-bold leading-none ${isDark ? 'text-board-light/70' : 'text-board-dark/70'}`}
           >
             {String.fromCharCode(97 + actualC)}
           </span>
@@ -502,52 +503,52 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
           </div>
         )}
         {isMoveOption && !isCapture && (
-          <div className="absolute w-3 h-3 bg-black/20 rounded-full z-20"></div>
+          <div className="absolute w-[26%] h-[26%] bg-black/20 rounded-full z-20"></div>
         )}
         {isCapture && (
-          <div className="absolute inset-0 border-[4px] border-black/20 rounded-full z-20"></div>
+          <div className="absolute inset-[6%] border-[5px] border-black/20 rounded-full z-20"></div>
         )}
       </div>
     );
   };
 
   return (
-    <div className="flex flex-col h-screen max-w-lg mx-auto bg-slate-900">
-      <header className="flex items-center justify-between p-4 bg-slate-900 border-b border-slate-800">
+    <div className="flex flex-col h-screen max-w-lg mx-auto bg-zinc-900">
+      <header className="flex items-center justify-between px-4 py-3 bg-zinc-900/95 border-b border-zinc-800/50">
         <button
           onClick={onExit}
-          className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+          className="p-2 text-zinc-500 hover:text-white rounded-lg hover:bg-zinc-800 transition-colors"
         >
-          <ChevronLeft size={24} />
+          <ChevronLeft size={22} />
         </button>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <div
-            className={`w-3 h-3 rounded-full ${turn === 'w' ? 'bg-white shadow-[0_0_10px_white]' : 'bg-slate-600'}`}
+            className={`w-2.5 h-2.5 rounded-full transition-all ${turn === 'w' ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.6)]' : 'bg-zinc-700'}`}
           ></div>
-          <span className="font-bold text-slate-200">{turn === 'w' ? 'White' : 'Black'}'s Turn</span>
+          <span className="font-bold text-sm text-zinc-300 tracking-wide">{turn === 'w' ? 'White' : 'Black'}'s Turn</span>
           <div
-            className={`w-3 h-3 rounded-full ${turn === 'b' ? 'bg-black border border-slate-500 shadow-[0_0_10px_black]' : 'bg-slate-600'}`}
+            className={`w-2.5 h-2.5 rounded-full transition-all ${turn === 'b' ? 'bg-zinc-300 shadow-[0_0_8px_rgba(200,200,200,0.4)]' : 'bg-zinc-700'}`}
           ></div>
         </div>
         <button
           onClick={resetGame}
-          className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+          className="p-2 text-zinc-500 hover:text-white rounded-lg hover:bg-zinc-800 transition-colors"
         >
-          <RotateCcw size={20} />
+          <RotateCcw size={18} />
         </button>
       </header>
 
-      <div className="flex items-center justify-between px-4 py-3">
+      <div className="flex items-center justify-between px-4 py-2.5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700">
+          <div className="w-9 h-9 rounded-full bg-zinc-800 flex items-center justify-center border border-zinc-700/50">
             {mode === 'bot' ? (
-              <Bot size={20} className="text-slate-400" />
+              <Bot size={18} className="text-zinc-500" />
             ) : (
-              <User size={20} className="text-slate-400" />
+              <User size={18} className="text-zinc-500" />
             )}
           </div>
           <div>
-            <div className="text-sm font-bold text-slate-200">
+            <div className="text-sm font-semibold text-zinc-300">
               {mode === 'bot'
                 ? botDifficulty === 1
                   ? 'Bot (Easy)'
@@ -560,12 +561,12 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
             </div>
             <div className="flex h-4 items-center gap-0.5">
               {(isFlipped ? blackLost : whiteLost).map((p, i) => (
-                <div key={i} className="w-4 h-4 opacity-80">
+                <div key={i} className="w-4 h-4 opacity-70">
                   <Piece type={p} color="w" />
                 </div>
               ))}
               {score && score.leader === (isFlipped ? 'w' : 'b') && (
-                <span className="text-xs text-green-500 font-bold ml-1">+{score.diff}</span>
+                <span className="text-[11px] text-emerald-400 font-bold ml-1">+{score.diff}</span>
               )}
             </div>
           </div>
@@ -573,8 +574,8 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
       </div>
 
       <div className="w-full px-2 sm:px-4 aspect-square">
-        <div className="w-full h-full border-4 border-slate-800 rounded-lg overflow-hidden shadow-2xl relative">
-          <div className="grid grid-cols-8 grid-rows-8 w-full h-full">
+        <div className="w-full h-full board-frame rounded-xl p-1.5 relative">
+          <div className="grid grid-cols-8 grid-rows-8 w-full h-full rounded-sm overflow-hidden">
             {Array(8)
               .fill(null)
               .map((_, r) =>
@@ -584,39 +585,40 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
               )}
           </div>
 
-          {result && !showResultModal && (
-            <div className="absolute bottom-4 left-4 right-4 bg-slate-800/95 backdrop-blur border border-slate-600 rounded-xl p-3 flex items-center justify-between shadow-2xl">
-              <div className="text-sm font-bold text-white pl-2">
-                {result.winner
-                  ? result.winner === 'w'
-                    ? 'White Wins'
-                    : 'Black Wins'
-                  : 'Game Drawn'}
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setShowResultModal(true)}
-                  className="px-3 py-1.5 text-xs font-bold text-slate-300 hover:text-white bg-slate-700 hover:bg-slate-600 rounded-lg"
-                >
-                  Results
-                </button>
-                <button
-                  onClick={resetGame}
-                  className="px-3 py-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg flex items-center gap-1"
-                >
-                  <RotateCcw size={14} /> New Game
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
+      {result && !showResultModal && (
+        <div className="mx-4 mt-2 bg-zinc-800 border border-zinc-700/60 rounded-xl p-3 flex items-center justify-between shadow-lg">
+          <div className="text-sm font-bold text-white pl-2">
+            {result.winner
+              ? result.winner === 'w'
+                ? 'White Wins'
+                : 'Black Wins'
+              : 'Game Drawn'}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowResultModal(true)}
+              className="px-3 py-1.5 text-xs font-bold text-zinc-300 hover:text-white bg-zinc-700 hover:bg-zinc-600 rounded-lg transition-colors"
+            >
+              Results
+            </button>
+            <button
+              onClick={resetGame}
+              className="px-3 py-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 rounded-lg flex items-center gap-1 transition-colors"
+            >
+              <RotateCcw size={14} /> New Game
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="px-4 py-3">
-        <div className="bg-slate-800 border border-slate-700 rounded-xl">
-          <div className="flex items-center justify-between px-3 py-2 border-b border-slate-700">
-            <span className="text-xs font-semibold text-slate-300 uppercase tracking-wide">
-              Move List
+        <div className="bg-zinc-800/80 border border-zinc-700/60 rounded-xl overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-800">
+            <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">
+              Moves
             </span>
             <div className="flex items-center gap-2">
               <button
@@ -629,37 +631,37 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
                   isOnlineWaiting ||
                   (mode === 'online' && hasOutgoingDrawOffer)
                 }
-                className="px-2.5 py-1 text-xs font-bold text-slate-200 bg-slate-700 hover:bg-slate-600 rounded-lg disabled:opacity-40"
+                className="px-3 py-1 text-[11px] font-bold text-zinc-300 bg-zinc-700/80 hover:bg-zinc-600 rounded-lg disabled:opacity-30 transition-colors"
               >
                 {hasOutgoingDrawOffer ? 'Draw Offered' : hasIncomingDrawOffer ? 'Respond to Draw' : 'Offer Draw'}
               </button>
               <button
                 onClick={() => setConfirmAction('resign')}
                 disabled={!!result || !!promotionPending || isOnlineWaiting}
-                className="px-2.5 py-1 text-xs font-bold text-red-200 bg-red-900/40 hover:bg-red-900/60 rounded-lg disabled:opacity-40"
+                className="px-3 py-1 text-[11px] font-bold text-red-300 bg-red-900/30 hover:bg-red-900/50 rounded-lg disabled:opacity-30 transition-colors"
               >
                 Resign
               </button>
             </div>
           </div>
           {(hasOutgoingDrawOffer || hasIncomingDrawOffer) && (
-            <div className="px-3 py-2 text-xs font-semibold text-amber-300 bg-amber-500/10 border-b border-amber-500/30">
+            <div className="px-4 py-2 text-xs font-semibold text-amber-300 bg-amber-500/10 border-t border-amber-500/20">
               {hasOutgoingDrawOffer
                 ? 'Draw offer sent. Expires in 1 minute.'
                 : 'Opponent offered a draw. Respond within 1 minute.'}
             </div>
           )}
-          <div className="max-h-32 overflow-auto">
+          <div className="max-h-36 overflow-auto scrollbar-hide">
             {moveRows.length === 0 ? (
-              <div className="px-3 py-3 text-xs text-slate-400">No moves yet.</div>
+              <div className="px-4 py-4 text-xs text-zinc-500 text-center">No moves yet.</div>
             ) : (
-              <table className="w-full text-xs text-slate-300">
+              <table className="w-full text-xs">
                 <tbody>
-                  {moveRows.map((row) => (
-                    <tr key={row.move} className="border-t border-slate-700/60">
-                      <td className="w-8 px-2 py-1 text-slate-500 font-semibold">{row.move}.</td>
-                      <td className="px-2 py-1 font-medium text-slate-200">{row.white}</td>
-                      <td className="px-2 py-1 text-slate-400">{row.black || '-'}</td>
+                  {moveRows.map((row, i) => (
+                    <tr key={row.move} className={i % 2 === 0 ? 'bg-zinc-800/40' : 'bg-zinc-750/20'}>
+                      <td className="w-10 px-3 py-1.5 text-zinc-500 font-mono text-[11px]">{row.move}.</td>
+                      <td className="px-3 py-1.5 font-semibold text-zinc-200 font-mono">{row.white}</td>
+                      <td className="px-3 py-1.5 text-zinc-400 font-mono">{row.black || ''}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -669,35 +671,33 @@ export const Game: React.FC<GameProps> = ({ mode, onlineConfig, botDifficulty = 
         </div>
       </div>
 
-      <div className="flex items-center justify-between px-4 py-3 mt-auto">
+      <div className="flex items-center justify-between px-4 py-2.5 mt-auto">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700">
-            <User size={20} className="text-slate-400" />
+          <div className="w-9 h-9 rounded-full bg-zinc-800 flex items-center justify-center border border-zinc-700/50">
+            <User size={18} className="text-zinc-500" />
           </div>
           <div>
-            <div className="text-sm font-bold text-slate-200">You</div>
+            <div className="text-sm font-semibold text-zinc-300">You</div>
             <div className="flex h-4 items-center gap-0.5">
               {(isFlipped ? whiteLost : blackLost).map((p, i) => (
-                <div key={i} className="w-4 h-4 opacity-80">
+                <div key={i} className="w-4 h-4 opacity-70">
                   <Piece type={p} color="b" />
                 </div>
               ))}
               {score && score.leader === (isFlipped ? 'b' : 'w') && (
-                <span className="text-xs text-green-500 font-bold ml-1">+{score.diff}</span>
+                <span className="text-[11px] text-emerald-400 font-bold ml-1">+{score.diff}</span>
               )}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-slate-800 p-2 text-center text-xs text-slate-400 h-8 flex items-center justify-center border-t border-slate-700">
+      <div className="bg-zinc-800/60 p-2 text-center text-[11px] text-zinc-500 h-8 flex items-center justify-center border-t border-zinc-800/80">
         {result
           ? result.winner
             ? `${result.winner === 'w' ? 'White' : 'Black'} wins`
             : result.reason || 'Draw'
-          : mode === 'online'
-            ? 'Online Game'
-            : 'Game in progress'}
+          : <span>Modern Chess <span className="text-zinc-600">by Upcurious</span></span>}
       </div>
 
       {promotionPending && <PromotionModal color={turn} onPromote={handlePromotion} />}

@@ -6,7 +6,7 @@ interface RulesViewProps {
 }
 
 export const RulesView: React.FC<RulesViewProps> = ({ onBack }) => (
-  <div className="flex flex-col h-full bg-slate-900 text-slate-200 p-4 max-w-2xl mx-auto overflow-y-auto">
+  <div className="flex flex-col h-full bg-zinc-900 text-zinc-200 p-4 max-w-2xl mx-auto overflow-y-auto">
     <button
       onClick={onBack}
       className="flex items-center text-blue-400 mb-6 font-semibold hover:text-blue-300 transition-colors"

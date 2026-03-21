@@ -34,7 +34,7 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
           <Trophy size={32} />
         </div>
         <h2 className="text-3xl font-bold text-white mb-2">{title}</h2>
-        <p className="text-slate-400 text-lg mb-8">{message}</p>
+        <p className="text-zinc-400 text-lg mb-8">{message}</p>
         <div className="space-y-3">
           <button
             onClick={onRestart}
@@ -44,13 +44,13 @@ export const GameOverModal: React.FC<GameOverModalProps> = ({
           </button>
           <button
             onClick={onViewBoard}
-            className="w-full py-3 px-4 bg-slate-700 hover:bg-slate-600 rounded-xl font-semibold text-slate-200 transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 px-4 bg-zinc-700 hover:bg-zinc-600 rounded-xl font-semibold text-zinc-200 transition-colors flex items-center justify-center gap-2"
           >
             <Eye size={20} /> View Board
           </button>
           <button
             onClick={onExit}
-            className="w-full py-3 px-4 bg-transparent hover:bg-slate-800 rounded-xl font-semibold text-slate-400 transition-colors"
+            className="w-full py-3 px-4 bg-transparent hover:bg-zinc-800 rounded-xl font-semibold text-zinc-400 transition-colors"
           >
             Exit to Menu
           </button>

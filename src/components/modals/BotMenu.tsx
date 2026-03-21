@@ -17,7 +17,7 @@ export const BotMenu: React.FC<BotMenuProps> = ({ isOpen, onClose, onSelect }) =
       <div className="p-6">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-white"
+          className="absolute top-4 right-4 text-zinc-400 hover:text-white"
         >
           ✕
         </button>
@@ -25,14 +25,14 @@ export const BotMenu: React.FC<BotMenuProps> = ({ isOpen, onClose, onSelect }) =
         <div className="space-y-3">
           <button
             onClick={() => onSelect(1)}
-            className="w-full py-4 px-4 bg-slate-700 hover:bg-green-600 rounded-xl flex items-center gap-4 transition-all group"
+            className="w-full py-4 px-4 bg-zinc-700 hover:bg-green-600 rounded-xl flex items-center gap-4 transition-all group"
           >
-            <div className="w-10 h-10 bg-slate-600 group-hover:bg-green-500 rounded-lg flex items-center justify-center text-slate-300 group-hover:text-white">
+            <div className="w-10 h-10 bg-zinc-600 group-hover:bg-green-500 rounded-lg flex items-center justify-center text-zinc-300 group-hover:text-white">
               <Bot size={24} />
             </div>
             <div className="text-left">
               <div className="font-bold text-white">Easy</div>
-              <div className="text-xs text-slate-400 group-hover:text-green-100">
+              <div className="text-xs text-zinc-400 group-hover:text-green-100">
                 Simple material trades
               </div>
             </div>
@@ -40,14 +40,14 @@ export const BotMenu: React.FC<BotMenuProps> = ({ isOpen, onClose, onSelect }) =
 
           <button
             onClick={() => onSelect(2)}
-            className="w-full py-4 px-4 bg-slate-700 hover:bg-yellow-600 rounded-xl flex items-center gap-4 transition-all group"
+            className="w-full py-4 px-4 bg-zinc-700 hover:bg-yellow-600 rounded-xl flex items-center gap-4 transition-all group"
           >
-            <div className="w-10 h-10 bg-slate-600 group-hover:bg-yellow-500 rounded-lg flex items-center justify-center text-slate-300 group-hover:text-white">
+            <div className="w-10 h-10 bg-zinc-600 group-hover:bg-yellow-500 rounded-lg flex items-center justify-center text-zinc-300 group-hover:text-white">
               <Zap size={24} />
             </div>
             <div className="text-left">
               <div className="font-bold text-white">Medium</div>
-              <div className="text-xs text-slate-400 group-hover:text-yellow-100">
+              <div className="text-xs text-zinc-400 group-hover:text-yellow-100">
                 Looks 2 moves ahead
               </div>
             </div>
@@ -55,14 +55,14 @@ export const BotMenu: React.FC<BotMenuProps> = ({ isOpen, onClose, onSelect }) =
 
           <button
             onClick={() => onSelect(3)}
-            className="w-full py-4 px-4 bg-slate-700 hover:bg-red-600 rounded-xl flex items-center gap-4 transition-all group"
+            className="w-full py-4 px-4 bg-zinc-700 hover:bg-red-600 rounded-xl flex items-center gap-4 transition-all group"
           >
-            <div className="w-10 h-10 bg-slate-600 group-hover:bg-red-500 rounded-lg flex items-center justify-center text-slate-300 group-hover:text-white">
+            <div className="w-10 h-10 bg-zinc-600 group-hover:bg-red-500 rounded-lg flex items-center justify-center text-zinc-300 group-hover:text-white">
               <Brain size={24} />
             </div>
             <div className="text-left">
               <div className="font-bold text-white">Hard</div>
-              <div className="text-xs text-slate-400 group-hover:text-red-100">
+              <div className="text-xs text-zinc-400 group-hover:text-red-100">
                 Positional strategy
               </div>
             </div>

@@ -135,15 +135,15 @@ export const OnlineMenu: React.FC<OnlineMenuProps> = ({ onBack, onStartGame }) =
   };
 
   return (
-    <div className="flex flex-col h-full items-center justify-center p-6 bg-slate-900">
-      <button onClick={onBack} className="absolute top-6 left-6 text-slate-400 hover:text-white">
+    <div className="flex flex-col h-full items-center justify-center p-6 bg-zinc-900">
+      <button onClick={onBack} className="absolute top-6 left-6 text-zinc-400 hover:text-white">
         <ChevronLeft size={24} />
       </button>
 
       <div className="w-full max-w-sm space-y-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-white mb-2">Play Online</h2>
-          <p className="text-slate-400">Play with a friend on a different device</p>
+          <p className="text-zinc-400">Play with a friend on a different device</p>
         </div>
 
         {error && (
@@ -167,9 +167,9 @@ export const OnlineMenu: React.FC<OnlineMenuProps> = ({ onBack, onStartGame }) =
             )}
           </button>
 
-          <div className="flex items-center gap-4 text-slate-500 text-sm font-bold uppercase">
-            <span className="flex-1 h-px bg-slate-700"></span> OR{' '}
-            <span className="flex-1 h-px bg-slate-700"></span>
+          <div className="flex items-center gap-4 text-zinc-500 text-sm font-bold uppercase">
+            <span className="flex-1 h-px bg-zinc-700"></span> OR{' '}
+            <span className="flex-1 h-px bg-zinc-700"></span>
           </div>
 
           <div className="flex gap-2">
@@ -181,13 +181,13 @@ export const OnlineMenu: React.FC<OnlineMenuProps> = ({ onBack, onStartGame }) =
                 setGameIdInput(e.target.value.toUpperCase());
                 setError('');
               }}
-              className="flex-1 bg-slate-800 border-2 border-slate-700 rounded-xl px-4 text-center font-mono text-xl tracking-widest text-white focus:border-blue-500 outline-none uppercase placeholder:text-slate-600"
+              className="flex-1 bg-zinc-800 border-2 border-zinc-700 rounded-xl px-4 text-center font-mono text-xl tracking-widest text-white focus:border-blue-500 outline-none uppercase placeholder:text-zinc-600"
               maxLength={6}
             />
             <button
               onClick={handleJoin}
               disabled={joining || creating}
-              className="px-6 bg-slate-700 hover:bg-slate-600 rounded-xl font-bold text-white disabled:opacity-50"
+              className="px-6 bg-zinc-700 hover:bg-zinc-600 rounded-xl font-bold text-white disabled:opacity-50"
             >
               {joining ? '...' : 'Join'}
             </button>

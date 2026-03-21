@@ -20,7 +20,7 @@ export const PromotionModal: React.FC<PromotionModalProps> = ({ color, onPromote
             <button
               key={p}
               onClick={() => onPromote(p)}
-              className="w-16 h-16 bg-slate-700 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-colors shadow-lg border border-slate-600 hover:border-blue-400"
+              className="w-16 h-16 bg-zinc-700 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-colors shadow-lg border border-zinc-600 hover:border-blue-400"
             >
               <div className="w-12 h-12">
                 <Piece type={p} color={color} />
