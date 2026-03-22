@@ -22,6 +22,7 @@ export const HomeView: React.FC<HomeViewProps> = ({ onStartGame, onRules, isOnli
       }} />
 
       <div className="relative z-10 mb-14 text-center">
+        <p className="mb-6 text-xs uppercase tracking-[0.35em] text-white/40">Upcurious Presents</p>
         <div className="flex justify-center mb-6">
           <div className="relative">
             <div className="w-28 h-28 rounded-3xl bg-gradient-to-br from-amber-700 via-amber-800 to-amber-950 flex items-center justify-center shadow-2xl shadow-amber-900/30 border border-amber-600/20">
